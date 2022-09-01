@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="css/details.css">
+    <title>Details</title>
+</head>
+<body>
+<nav class="header">
+    <div class="reorder">
+        <span class="material-icons reorder-icon">reorder</span>
+        <span class="reorder-logo">Logo</span>
+    </div>
+    <div class="search">
+        <form class="search-form">
+            <input type="text" placeholder="Search by item name" class="search-input" size="60">
+            <button type="submit" class="search-button">
+                <span>All Categories</span> <span class="material-icons">expand_more</span>
+            </button>
+        </form>
+    </div>
+    <div class="items">
+        <span class="material-icons">favorite</span>
+        <span class="material-icons">shopping_cart</span>
+        <div style="display: flex">
+            <button class="items-button">Login</button>
+            <div class="vl"></div>
+            <button class="items-button">Sign Up</button>
+        </div>
+    </div>
+</nav>
+<main class="main">
+    <div class="grid-container">
+        <div class="coupon-image">
+
+        </div>
+        <div class="coupon-property">
+            <div>
+                <h2>Coupon Name</h2>
+                <p>By convention, the object returned by this method should be independent of this object (which is
+                    being
+                    cloned). To achieve this independence, it may be necessary to modify one or more fields of the
+                    object
+                    returned by super.clone before returning it.</p>
+            </div>
+            <div>
+                <div style="font-size: small; color: #4f4f4f">Time Left To Buy</div>
+                <div>12 days 14 hours</div>
+            </div>
+            <div class="coupon-price">
+                <div style="display: flex; align-items: center">
+                    <span class="material-icons">attach_money</span><span style="font-size: larger">235</span>
+                </div>
+                <button class="add-cart-button">Add to cart <span class="material-icons">shopping_cart</span></button>
+            </div>
+        </div>
+        <div class="item-description">
+            <h2>Item Detailed Description</h2>
+            <p>By convention, the object returned by this method should be independent of this object (which is being
+                cloned). To achieve this independence, it may be necessary to modify one or more fields of the object
+                returned by super.clone before returning it. Typically, this means copying any mutable objects that
+                comprise the internal "deep structure" of the object being cloned and replacing the references to these
+                objects with references to the copies. If a class contains only primitive fields or references to
+                immutable objects, then it is usually the case that no fields in the object returned by super.clone need
+                to be modified.</p>
+        </div>
+    </div>
+</main>
+<footer class="footer">
+
+</footer>
+</body>
+</html>

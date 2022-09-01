@@ -3,13 +3,14 @@ package com.epam.esm.dao;
 import com.epam.esm.dao.entity.Certificate;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 @Transactional
 @Repository
-public interface CertificateRepository extends PagingAndSortingRepository<Certificate, Integer> {
+public interface CertificateRepository extends PagingAndSortingRepository<Certificate, Integer>,  QuerydslPredicateExecutor<Certificate> {
     @Modifying
     @Query("Update Certificate c set c.name =:name where c.id=:id")
     void updateName(Integer id, String name);

@@ -19,6 +19,7 @@ repositories {
 }
 mainClassName = 'com.epam.esm.WebApplication'
 dependencies {
+    implementation group: 'com.querydsl', name: 'querydsl-core', version: '5.0.0'
     implementation group: 'org.springframework.boot', name: 'spring-boot-starter-validation', version: '2.6.7'
     implementation 'org.springframework.boot:spring-boot-starter-hateoas:2.7.0'
     implementation group: 'org.springframework.boot', name: 'spring-boot-starter-security', version: '2.7.0'

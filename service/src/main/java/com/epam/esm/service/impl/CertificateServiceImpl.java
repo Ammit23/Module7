@@ -4,23 +4,30 @@ import com.epam.esm.dao.CertificateDao;
 import com.epam.esm.dao.CertificateRepository;
 import com.epam.esm.dao.TagRepository;
 import com.epam.esm.dao.entity.Certificate;
+import com.epam.esm.dao.entity.SearchCertificateRequest;
 import com.epam.esm.dao.entity.Tag;
 import com.epam.esm.service.CertificateService;
 import com.epam.esm.service.dto.DtoConverter;
 import com.epam.esm.service.dto.entity.CertificateDto;
 import com.epam.esm.service.exception.ServiceException;
+import com.epam.esm.service.utils.QPredicate;
+import com.epam.esm.service.utils.SortBuilder;
 import com.epam.esm.service.validation.Validator;
+import com.querydsl.core.types.ExpressionUtils;
+import com.querydsl.core.types.Predicate;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import static com.epam.esm.dao.entity.QCertificate.certificate;
 import static com.epam.esm.service.exception.ExceptionMessage.*;
-
 @Service
 @RequiredArgsConstructor
 public class CertificateServiceImpl implements CertificateService {
@@ -60,6 +67,17 @@ public class CertificateServiceImpl implements CertificateService {
         } else {
             throw new ServiceException(ERR_NO_SUCH_CERTIFICATES);
         }
+    }
+   public List<CertificateDto> findCertificates(SearchCertificateRequest request, int page, int pageSize) {
+       Predicate predicate = buildPredicate(request);
+        Sort sort = SortBuilder.buildSort(request.getSorting(), request.getSortingOrder());
+        Pageable pageable = PageRequest.of(page - 1, pageSize, sort);
+        List<Certificate> certificates = certificateRepository.findAll(predicate, pageable).getContent();
+        if (certificates.size() == 0) {
+            //Fixme
+            throw new ServiceException("messageCode1");
+        }
+        return certificates.stream().map(certificateDtoConverter::convertToDto).collect(Collectors.toList());
     }
 
     public CertificateDto update(Integer id, Map<String, Object> updates) throws ServiceException {
@@ -150,6 +168,20 @@ public class CertificateServiceImpl implements CertificateService {
         } else {
             return certificates.map(certificateDtoConverter::convertToDto);
         }
+    }
+
+   private Predicate buildPredicate(SearchCertificateRequest request) {
+
+        Predicate certificatePredicate = QPredicate.builder().add(request.getCertificateName(), certificate.name::containsIgnoreCase).add(request.getPriceFrom(),
+                certificate.price::goe).add(request.getPriceTo(), certificate.price::loe).buildAnd();
+        if (request.getTagName() != null) {
+            List<String> tagNames = Arrays.stream(request.getTagName().split(";")).map(String::trim).collect(Collectors.toList());
+            List<Predicate> tagPredicatesList = tagNames.stream().map(tagName -> certificate.tagNames.any().name.eq(tagName)).
+                    collect(Collectors.toList());
+            Predicate tagsPredicate = ExpressionUtils.allOf(tagPredicatesList);
+            return ExpressionUtils.allOf(certificatePredicate, tagsPredicate);
+        }
+        return certificatePredicate;
     }
 }
 

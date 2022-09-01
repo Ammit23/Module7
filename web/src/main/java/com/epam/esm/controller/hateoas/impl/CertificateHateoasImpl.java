@@ -34,7 +34,7 @@ public class CertificateHateoasImpl implements HateoasAdder<CertificateDto> {
         }
     }
 
-    public static ResponseEntity<CollectionModel<CertificateDto>> getCollectionModelWithPagination(String[] tagNames, String partName,
+/*    public static ResponseEntity<CollectionModel<CertificateDto>> getCollectionModelWithPagination(String[] tagNames, String partName,
                                                                              String[] sort, String sortDirection, int page, int limit, List<CertificateDto> list) {
 
         int firstPage = 0;
@@ -56,6 +56,6 @@ public class CertificateHateoasImpl implements HateoasAdder<CertificateDto> {
         Link first = linkTo(methodOn(CertificateController.class).findGiftCertificatesByAnyParams(tagNames, partName,
                 sort, sortDirection, firstPage, limit)).withRel("first");
         return new ResponseEntity<>(CollectionModel.of(list, first, prev, self, next), HttpStatus.OK);
-    }
+    }*/
 
 }

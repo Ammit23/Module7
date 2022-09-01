@@ -4,6 +4,7 @@ plugins {
     id 'java-library'
     id 'jacoco'
 }
+
 jacoco {
     toolVersion = "0.8.8"
     reportsDirectory = layout.buildDirectory.dir('customJacocoReportDir')
@@ -11,13 +12,19 @@ jacoco {
 java {
     sourceCompatibility = JavaVersion.VERSION_1_8
 }
-
 repositories {
+    maven {
+        url "https://plugins.gradle.org/m2/"
+    }
     mavenLocal()
     mavenCentral()
 }
-
 dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa:2.5.6'
+    annotationProcessor 'org.springframework.boot:spring-boot-starter-data-jpa:2.5.6'
+    implementation 'com.querydsl:querydsl-jpa:5.0.0'
+    annotationProcessor 'com.querydsl:querydsl-apt:5.0.0:jpa'
+
     implementation group: 'org.springframework.boot', name: 'spring-boot-starter-validation', version: '2.6.7'
     implementation group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version: '2.6.7'
     implementation 'org.projectlombok:lombok:1.18.24'
@@ -35,6 +42,7 @@ dependencies {
 
     implementation project(":model")
 }
+
 bootJar {
     enabled = false
 }

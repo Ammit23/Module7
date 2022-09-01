@@ -5,7 +5,7 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
 @SpringBootApplication(scanBasePackages = "com.epam.esm")
-public class WebApplication extends SpringBootServletInitializer {
+public class WebApplication {
 
     public static void main(String[] args) {
 

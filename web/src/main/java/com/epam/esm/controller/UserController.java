@@ -16,6 +16,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RequestMapping("/users")
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequiredArgsConstructor
 public class UserController {
@@ -23,7 +24,7 @@ public class UserController {
     private final HateoasAdder<UserResponseDto> hateoasAdder;
 
     @GetMapping
-    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+  //  @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public ResponseEntity<CollectionModel<UserResponseDto>> findAllUsers(
                                                                  @RequestParam(value = "page", defaultValue = "0", required = false) int page,
                                                                  @RequestParam(value = "size", defaultValue = "10", required = false) int size) {

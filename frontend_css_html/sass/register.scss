@@ -1,0 +1,89 @@
+@use "base";
+
+@import "header";
+
+.header{
+  grid-area: header;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-inline: 15px;
+}
+
+.main{
+  grid-area: main;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f2f2f2;
+}
+
+.footer{
+  grid-area: footer;
+}
+
+.register-frame{
+  display: flex;
+  flex-direction: column;
+  width: 940px;
+  height: 470px;
+  font-family: base.$login-font;
+  background: white;
+  color: #828282;
+}
+
+.register-frame-header{
+  font-family: base.$login-font;
+  font-size: x-large;
+  padding: 22px;
+  color: white;
+  background: #bdbdbd;
+}
+
+.register-form{
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-gap: 15px;
+  padding-inline: 42px;
+  padding-block: 22px;
+}
+
+.register-form-item{
+  display: flex;
+  flex-direction: column;
+
+  label{
+    padding-bottom: 10px;
+  }
+
+  input{
+    height: 46px;
+  }
+}
+
+.register-form-button{
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-gap: 10px;
+  padding-top: 22px;
+
+  input{
+    font-family: base.$login-font;
+    font-size: large;
+    font-weight: bold;
+    height: 46px;
+  }
+}
+
+#cancel{
+  border: 1px solid #bdbdbd;
+  background: white;
+  color: #828282;
+}
+
+#sign-up{
+  border-style: none;
+  color: base.$primary-text-color;
+  background-color: #6fcf97;
+}
