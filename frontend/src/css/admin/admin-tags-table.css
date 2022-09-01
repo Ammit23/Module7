@@ -1,0 +1,49 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: sans-serif;
+}
+
+.admin-tags-table-container {
+    width: 40%;
+    margin: 50px 0 30px 0;
+    background-color: white;
+    overflow-y: auto;
+}
+
+.admin-tags-table-tablerow > .MuiTableCell-root {
+    padding: 4px 16px 4px 16px;
+}
+
+.admin-tags-table-header > .MuiTableRow-head > .MuiTableCell-head {
+    font-weight: bold;
+}
+
+.items-table-body > .MuiTableRow-root:hover {
+    background-color: #f0f0f1;
+    cursor: pointer;
+}
+
+.items-table-buttons-contaier {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.delete-button {
+    width: 70px;
+    color: white;
+    border-radius: 5px;
+    border: none;
+}
+
+.delete-button {
+    background-color: #d7524f;
+}
+
+.delete-button:hover {
+    color: black;
+}
